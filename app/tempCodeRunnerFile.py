@@ -1,11 +1,10 @@
 import sys
 import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from fastapi import FastAPI
 from app.config.database import engine, Base
 from app.api.v1.endpoints.book_endpoint import app as book_router
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 Base.metadata.create_all(bind=engine)
 
@@ -18,5 +17,5 @@ def root():
     return {"message": "Bookshelf API is running!"}
 
 if __name__ == "__main__":
-    import uvicorn
+    import uvicorn 
     uvicorn.run(app, host="127.0.0.1", port=8000)
